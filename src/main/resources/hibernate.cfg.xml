@@ -11,7 +11,7 @@
             org.postgresql.Driver
         </property>
         <property name="hibernate.connection.url">
-            ec2-54-195-241-106.eu-west-1.compute.amazonaws.com
+            jdbc:postgresql://ec2-54-195-241-106.eu-west-1.compute.amazonaws.com:5432/d3dp1lkgntvdcl
         </property>
         <property name="hibernate.connection.username">
             jrqlflpnoihxcc
