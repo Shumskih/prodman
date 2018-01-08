@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class HibernateManufacturerDAOImpl implements GenericDAO<Manufacturer, UUID> {
-    HibernateUtil hibernateUtil = new HibernateUtil();
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     public void save(Manufacturer manufacturer) {
