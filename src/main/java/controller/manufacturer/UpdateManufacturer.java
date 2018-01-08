@@ -78,11 +78,11 @@ public class UpdateManufacturer extends HttpServlet {
             Manufacturer newManufacturer = new Manufacturer(id, newManufacturerName);
             hibernateManufacturerDAO.update(newManufacturer);
 
-            writer.println("<p class=\"text-center\">Manufacturer " + oldManufacturerName + " has updated with new name " + newManufacturerName + "</p>");
-            writer.println("<p class=\"text-center\"><a href=\"/index.jsp\">Go to main menu --></a></p>");
+            writer.println("<p class=\"text-center text-success\">Manufacturer " + oldManufacturerName + " has updated with new name " + newManufacturerName + "</p>");
+            writer.println("<p class=\"text-center\"><a href=\"/index.jsp\" class=\"btn btn-default btn-lg active\">Go to main menu --></a></p>");
         } else {
-                writer.println("<p class=\"text-center\">Please, enter name of manufacturer</p>");
-                writer.println("<p class=\"text-center\"><a href=\"update-manufacturer.jsp\">Back</a></p>");
+                writer.println("<p class=\"text-center text-danger\">Please, enter name of manufacturer</p>");
+                writer.println("<p class=\"text-center\"><a href=\"update-manufacturer.jsp\" class=\"btn btn-default btn-lg active\">Try again</a></p>");
         }
         writer.println("</body>");
     }

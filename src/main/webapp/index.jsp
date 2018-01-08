@@ -44,7 +44,7 @@
                 <a href="add-product" class="btn btn-primary">Add product</a>
             </li>
             <li class="index">
-                <a href="choose-product" class="btn btn-primary">Update product</a>
+                <a href="select-product-for-update" class="btn btn-primary">Update product</a>
             </li>
             <li class="index">
                 <a href="delete-product" class="btn btn-primary">Delete product</a>

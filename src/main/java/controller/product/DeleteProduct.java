@@ -72,12 +72,12 @@ public class DeleteProduct extends HttpServlet {
 
             hibernateProductDAO.delete(productName);
 
-            writer.println("<p class=\"text-center\">Product " + productName + " has deleted</p>");
-            writer.println("<p class=\"text-center\"><a href=\"/index.jsp\">Go to main menu --></a></p>");
+            writer.println("<p class=\"text-center text-success\">Product " + productName + " has deleted</p>");
+            writer.println("<p class=\"text-center\"><a href=\"/index.jsp\" class=\"btn btn-default btn-lg active\">Go to main menu --></a></p>");
         } else {
             if(productName.trim().length() == 0) {
-                writer.println("<p class=\"text-center\">Please, enter name of product</p>");
-                writer.println("<p class=\"text-center\"><a href=\"delete-product\">Back</a></p>");
+                writer.println("<p class=\"text-center text-danger\">Please, enter name of product</p>");
+                writer.println("<p class=\"text-center\"><a href=\"delete-product\" class=\"btn btn-default btn-lg active\"><-- Back</a></p>");
             }
         }
         writer.println("</body>");

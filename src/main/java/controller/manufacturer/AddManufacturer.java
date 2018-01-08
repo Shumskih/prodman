@@ -71,17 +71,17 @@ public class AddManufacturer extends HttpServlet{
                 Manufacturer manufacturer = new Manufacturer(UUID.randomUUID(), manufacturerName.trim());
                 hibernateManufacturerDAO.save(manufacturer);
 
-                writer.println("<p class=\"text-center\">Manufacturer " + manufacturerName + " has added</p>");
-                writer.println("<p class=\"text-center\"><a href=\"/index.jsp\">Go to main menu --></a></p>");
+                writer.println("<p class=\"text-center text-success\">Manufacturer " + manufacturerName + " has added</p>");
+                writer.println("<p class=\"text-center\"><a href=\"/index.jsp\" class=\"btn btn-default btn-lg active\">Go to main menu --></a></p>");
             } else {
-                writer.println("<p class=\"text-center\">Manufacturer with name " + manufacturerName + " has exists</p>");
-                writer.println("<p class=\"text-center\">Please, enter another name</p>");
-                writer.println("<p class=\"text-center\"><a href=\"add-manufacturer\"><-- Back</a></p>");
+                writer.println("<p class=\"text-center text-danger\">Manufacturer with name " + manufacturerName + " has exists</p>");
+                writer.println("<p class=\"text-center text-danger\">Please, enter another name</p>");
+                writer.println("<p class=\"text-center\"><a href=\"add-manufacturer\" class=\"btn btn-default btn-lg active\">Try again</a></p>");
             }
         } else {
             if(manufacturerName.trim().length() == 0) {
-                writer.println("<p class=\"text-center\">Please, enter name of manufacturer</p>");
-                writer.println("<p class=\"text-center\"><a href=\"add-manufacturer\"><-- Back</a></p>");
+                writer.println("<p class=\"text-center text-danger\">Please, enter name of manufacturer</p>");
+                writer.println("<p class=\"text-center\"><a href=\"add-manufacturer\" class=\"btn btn-default btn-lg active\">Try again</a></p>");
             }
         }
         writer.println("</body>");

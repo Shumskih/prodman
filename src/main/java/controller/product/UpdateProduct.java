@@ -30,7 +30,7 @@ public class UpdateProduct extends HttpServlet {
 
     public void init() throws ServletException {
         docType = "<!DOCTYPE html>";
-        h1Title = "Update Manufacturer:";
+        h1Title = "Update Product:";
         metaCharset = "<meta charset=\"utf-8\">";
         metaNameContent = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">";
         bootstrap = "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css\" integrity=\"sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy\" crossorigin=\"anonymous\">";
@@ -83,7 +83,7 @@ public class UpdateProduct extends HttpServlet {
         messageWriter.println(bootstrap);
         messageWriter.println("<!-- Styles -->");
         messageWriter.println(css);
-        messageWriter.println("<title>" + "List Of Manufacturers" + "</title>");
+        messageWriter.println("<title>" + h1Title + "</title>");
         messageWriter.println("</head>");
 
         messageWriter.println("<body>");
@@ -97,12 +97,11 @@ public class UpdateProduct extends HttpServlet {
             Product newProduct = new Product(productID, productName, new BigDecimal(productPrice).setScale(2, RoundingMode.HALF_DOWN), manufacturer);
             hibernateProductDAO.update(newProduct);
 
-            writer.println(productPrice);
-            writer.println("<p class=\"text-center\">Product " + productName + " has updated</p>");
-            writer.println("<p class=\"text-center\"><a href=\"/index.jsp\">Go to main menu --></a></p>");
+            writer.println("<p class=\"text-center text-success\">Product " + productName + " has updated</p>");
+            writer.println("<p class=\"text-center\"><a href=\"/index.jsp\" class=\"btn btn-default btn-lg active\">Go to main menu --></a></p>");
         } else {
-            writer.println("<p class=\"text-center\">Please, enter name of manufacturer</p>");
-            writer.println("<p class=\"text-center\"><a href=\"update-manufacturer.jsp\">Back</a></p>");
+            writer.println("<p class=\"text-center text-danger\">Please, enter name of manufacturer</p>");
+            writer.println("<p class=\"text-center\"><a href=\"update-manufacturer.jsp\" class=\"btn btn-default btn-lg active\"><-- Back</a></p>");
         }
         writer.println("</body>");
     }

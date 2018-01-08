@@ -84,16 +84,16 @@ public class AddProduct extends HttpServlet {
                 Product product = new Product(UUID.randomUUID(), productName, bigDecimal, manufacturer);
                 hibernateProductDAO.save(product);
 
-                writer.println("<p class=\"text-center\">Product " + productName + " has added</p>");
-                writer.println("<p class=\"text-center\"><a href=\"/index.jsp\">Go to main menu --></a></p>");
+                writer.println("<p class=\"text-center text-success\">Product " + productName + " has added</p>");
+                writer.println("<p class=\"text-center\"><a href=\"/index.jsp\" class=\"btn btn-default btn-lg active\">Go to main menu --></a></p>");
             } else {
-                writer.println("<p class=\"text-center\">Product " + productName + " has exists. Please, enter another name.</p>");
-                writer.println("<p class=\"text-center\"><a href=\"/add-product\"><-- Back</a></p>");
+                writer.println("<p class=\"text-center text-danger\">Product " + productName + " has exists. Please, enter another name.</p>");
+                writer.println("<p class=\"text-center\"><a href=\"/add-product\" class=\"btn btn-default btn-lg active\"><-- Back</a></p>");
             }
         } else {
             if(productName.trim().length() == 0) {
-                writer.println("<p class=\"text-center\">Please, enter name of product</p>");
-                writer.println("<p class=\"text-center\"><a href=\"add-product\">Back</a></p>");
+                writer.println("<p class=\"text-center text-danger\">Please, enter name of product</p>");
+                writer.println("<p class=\"text-center\"><a href=\"add-product\" class=\"btn btn-default btn-lg active\"><-- Back</a></p>");
             }
         }
         writer.println("</body>");

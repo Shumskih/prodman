@@ -19,7 +19,6 @@ public class Product {
     private String name;
 
     @Column(name = "price")
-    @Type(type = "big_decimal")
     private BigDecimal price;
 
     @ManyToOne

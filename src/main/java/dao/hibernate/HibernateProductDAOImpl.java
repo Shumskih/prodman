@@ -98,6 +98,7 @@ public class HibernateProductDAOImpl implements GenericDAO<Product, UUID> {
 
             product.setName(name);
             product.setManufacturer(manufacturer);
+            product.setPrice(price);
 
             session.update(product);
             transaction.commit();

@@ -38,14 +38,16 @@
                 <label for="productPrice">Enter new price or leave the existing value:</label><br>
                     <input type="text" name="productPrice" id="productPrice" placeholder="Enter new product's price"  value="<% out.println(price); %>" class="form-control"><br>
                 <label for="productManufacturer">Select manufacturer or leave the existing value:</label><br>
-                <% List<Manufacturer> manufacturers = (List<Manufacturer>) request.getAttribute("productManufacturers");
-                %>
 
                 <select class="form-control" name="productManufacturer" id="productManufacturer">
-                    <% for(Manufacturer m : manufacturers) {
+                    <option><%out.println(manufacturer.getName());%></option>
+                <% List<Manufacturer> manufacturers = (List<Manufacturer>) request.getAttribute("productManufacturers");
+                    for(Manufacturer m : manufacturers) {
+                        if(!m.getName().equals(manufacturer.getName())) {
                     %>
                     <option><%out.println(m.getName());%></option>
                     <% }
+                    }
                     %>
 
                 </select><br>
