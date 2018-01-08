@@ -26,7 +26,7 @@ public class AddManufacturer extends HttpServlet{
         h1Title = "Add New Manufacturer:";
         metaCharset = "<meta charset=\"utf-8\">";
         metaNameContent = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">";
-        bootstrap = "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css\" integrity=\"sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy\" crossorigin=\"anonymous\">";
+        bootstrap = "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">";
         css = "<link rel=\"stylesheet\" href=\"css/styles.css\">";
     }
 
@@ -66,18 +66,11 @@ public class AddManufacturer extends HttpServlet{
 
         if(!manufacturerName.trim().isEmpty()) {
 
-            Manufacturer checkExistsName = hibernateManufacturerDAO.getbyName(manufacturerName);
-            if(checkExistsName.getName().isEmpty()) {
-                Manufacturer manufacturer = new Manufacturer(UUID.randomUUID(), manufacturerName.trim());
-                hibernateManufacturerDAO.save(manufacturer);
+            Manufacturer manufacturer = new Manufacturer(UUID.randomUUID(), manufacturerName.trim());
+            hibernateManufacturerDAO.save(manufacturer);
 
-                writer.println("<p class=\"text-center text-success\">Manufacturer " + manufacturerName + " has added</p>");
-                writer.println("<p class=\"text-center\"><a href=\"/index.jsp\" class=\"btn btn-default btn-lg active\">Go to main menu --></a></p>");
-            } else {
-                writer.println("<p class=\"text-center text-danger\">Manufacturer with name " + manufacturerName + " has exists</p>");
-                writer.println("<p class=\"text-center text-danger\">Please, enter another name</p>");
-                writer.println("<p class=\"text-center\"><a href=\"add-manufacturer\" class=\"btn btn-default btn-lg active\">Try again</a></p>");
-            }
+            writer.println("<p class=\"text-center text-success\">Manufacturer " + manufacturerName + " has added</p>");
+            writer.println("<p class=\"text-center\"><a href=\"/index.jsp\" class=\"btn btn-default btn-lg active\">Go to main menu --></a></p>");
         } else {
             if(manufacturerName.trim().length() == 0) {
                 writer.println("<p class=\"text-center text-danger\">Please, enter name of manufacturer</p>");

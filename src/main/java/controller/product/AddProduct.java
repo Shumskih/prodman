@@ -30,7 +30,7 @@ public class AddProduct extends HttpServlet {
         h1Title = "Add New Product:";
         metaCharset = "<meta charset=\"utf-8\">";
         metaNameContent = "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">";
-        bootstrap = "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css\" integrity=\"sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy\" crossorigin=\"anonymous\">";
+        bootstrap = "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">";
         css = "<link rel=\"stylesheet\" href=\"css/styles.css\">";
     }
 
@@ -78,18 +78,11 @@ public class AddProduct extends HttpServlet {
         writer.println("</div>");
 
         if(!productName.trim().isEmpty()) {
+            Product product = new Product(UUID.randomUUID(), productName, bigDecimal, manufacturer);
+            hibernateProductDAO.save(product);
 
-            Product checkExistsProduct = hibernateProductDAO.getbyName(productName);
-            if(checkExistsProduct.getName().isEmpty()) {
-                Product product = new Product(UUID.randomUUID(), productName, bigDecimal, manufacturer);
-                hibernateProductDAO.save(product);
-
-                writer.println("<p class=\"text-center text-success\">Product " + productName + " has added</p>");
-                writer.println("<p class=\"text-center\"><a href=\"/index.jsp\" class=\"btn btn-default btn-lg active\">Go to main menu --></a></p>");
-            } else {
-                writer.println("<p class=\"text-center text-danger\">Product " + productName + " has exists. Please, enter another name.</p>");
-                writer.println("<p class=\"text-center\"><a href=\"/add-product\" class=\"btn btn-default btn-lg active\"><-- Back</a></p>");
-            }
+            writer.println("<p class=\"text-center text-success\">Product " + productName + " has added</p>");
+            writer.println("<p class=\"text-center\"><a href=\"/index.jsp\" class=\"btn btn-default btn-lg active\">Go to main menu --></a></p>");
         } else {
             if(productName.trim().length() == 0) {
                 writer.println("<p class=\"text-center text-danger\">Please, enter name of product</p>");
