@@ -7,24 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62ba353a-4a0e-4331-a3b1-c14798f328bb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" afterPath="$PROJECT_DIR$/src/main/java/Test.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/manufacturer/AddManufacturer.java" afterPath="$PROJECT_DIR$/src/main/java/controller/manufacturer/AddManufacturer.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/manufacturer/DeleteManufacturer.java" afterPath="$PROJECT_DIR$/src/main/java/controller/manufacturer/DeleteManufacturer.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/manufacturer/UpdateManufacturer.java" afterPath="$PROJECT_DIR$/src/main/java/controller/manufacturer/UpdateManufacturer.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/product/AddProduct.java" afterPath="$PROJECT_DIR$/src/main/java/controller/product/AddProduct.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/product/ChooseProduct.java" afterPath="$PROJECT_DIR$/src/main/java/controller/product/SelectProductForUpdate.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/product/DeleteProduct.java" afterPath="$PROJECT_DIR$/src/main/java/controller/product/DeleteProduct.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/product/UpdateProduct.java" afterPath="$PROJECT_DIR$/src/main/java/controller/product/UpdateProduct.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/hibernate/HibernateProductDAOImpl.java" afterPath="$PROJECT_DIR$/src/main/java/dao/hibernate/HibernateProductDAOImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Product.java" afterPath="$PROJECT_DIR$/src/main/java/model/Product.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/products/choose-product.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/products/select-product-for-update.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/products/update-product.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/products/update-product.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/ProductManufacturerMavenAW/index.jsp" afterPath="$PROJECT_DIR$/target/ProductManufacturerMavenAW/index.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/ProductManufacturerMavenAW/products/choose-product.jsp" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/target/ProductManufacturerMavenAW/products/update-product.jsp" afterPath="$PROJECT_DIR$/target/ProductManufacturerMavenAW/products/update-product.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -88,8 +71,8 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="76" column="59" lean-forward="false" selection-start-line="76" selection-start-column="46" selection-end-line="76" selection-end-column="59" />
+            <state relative-caret-position="576">
+              <caret line="74" column="44" lean-forward="true" selection-start-line="74" selection-start-column="44" selection-end-line="74" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -128,7 +111,6 @@
         <option value="$PROJECT_DIR$/src/main/java/controller/AddManufacturer.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/add-manufacturer.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/dao/GenericDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/delete-manufacturer.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/update-manufacturer.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
@@ -164,6 +146,7 @@
         <option value="$PROJECT_DIR$/src/main/java/controller/manufacturer/UpdateManufacturer.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/Procfile" />
+        <option value="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" />
       </list>
     </option>
   </component>
@@ -276,6 +259,21 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="dao" type="462c0819:PsiDirectoryNode" />
               <item name="hibernate" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProductManufacturerMavenAW" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProductManufacturerMavenAW" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProductManufacturerMavenAW" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProductManufacturerMavenAW" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ProductManufacturerMavenAW" type="b2602c69:ProjectViewProjectNode" />
@@ -581,12 +579,12 @@
       <workItem from="1515305685213" duration="7790000" />
       <workItem from="1515314456925" duration="10559000" />
       <workItem from="1515351491832" duration="1103000" />
-      <workItem from="1515392865931" duration="4700000" />
+      <workItem from="1515392865931" duration="5241000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69120000" />
+    <option name="totallyTimeSpent" value="69661000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -780,13 +778,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="19" lean-forward="false" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1043,10 +1034,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="76" lean-forward="false" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="76" column="59" lean-forward="false" selection-start-line="76" selection-start-column="46" selection-end-line="76" selection-end-column="59" />
+        <state relative-caret-position="576">
+          <caret line="74" column="44" lean-forward="true" selection-start-line="74" selection-start-column="44" selection-end-line="74" selection-end-column="44" />
           <folding />
         </state>
       </provider>
