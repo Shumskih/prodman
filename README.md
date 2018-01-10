@@ -40,4 +40,4 @@ How to run app on your local machine.
 
 1. First install SQL database and change settings in main/java/resources/hibernate.cfg.xml suitable for your DB.
 2. Use files main/java/resources/database/initDB.sql and populateDB.sql for initialization database and fill it by data. initDB.sql contains requests for creating tables and populateDB.sql contains requests for fill database by data.
-2. Then run the app. ))
+2. Then run the app and enjoy. ))
