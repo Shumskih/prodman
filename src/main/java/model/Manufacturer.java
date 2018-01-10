@@ -1,7 +1,5 @@
 package model;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
@@ -13,7 +11,6 @@ public class Manufacturer {
     @Id
     @Column(name = "id")
     @GeneratedValue
-    @Type(type = "uuid-char")
     private UUID id;
 
     @Column(name = "name")
