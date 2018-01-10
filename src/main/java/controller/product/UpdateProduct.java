@@ -47,8 +47,8 @@ public class UpdateProduct extends HttpServlet {
 
         String productName = req.getParameter("product");
         Product product;
-        Manufacturer manufacturer = null;
-        BigDecimal productPrice = null;
+        Manufacturer manufacturer;
+        BigDecimal productPrice;
 
         Boolean isNameExists = hibernateProductDAO.exists(productName);
         if(isNameExists) {
@@ -56,6 +56,14 @@ public class UpdateProduct extends HttpServlet {
             manufacturer = product.getManufacturer();
             productID = product.getId();
             productPrice = product.getPrice().setScale(2, RoundingMode.HALF_DOWN);
+
+            req.setAttribute("id", productID);
+            req.setAttribute("productName", productName);
+            req.setAttribute("productPrice", productPrice);
+            req.setAttribute("productManufacturer", manufacturer);
+            req.setAttribute("productManufacturers", manufacturers);
+            req.setAttribute("listOfProducts", products);
+            req.getRequestDispatcher("/products/update-product.jsp").forward(req, resp);
         } else {
             writer.print("<p class=\"text-center text-danger margin-top label-header\">Product not found.</p>");
             writer.println("<div class=\"form-group form-correction text-center\">");
@@ -63,14 +71,6 @@ public class UpdateProduct extends HttpServlet {
             writer.print("<a href=\"../index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
             writer.println("<div>");
         }
-
-        req.setAttribute("id", productID);
-        req.setAttribute("productName", productName);
-        req.setAttribute("productPrice", productPrice);
-        req.setAttribute("productManufacturer", manufacturer);
-        req.setAttribute("productManufacturers", manufacturers);
-        req.setAttribute("listOfProducts", products);
-        req.getRequestDispatcher("/products/update-product.jsp").forward(req, resp);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
