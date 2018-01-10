@@ -76,12 +76,9 @@ public class Product {
 
     @Override
     public String toString() {
-        return "<p class=\"text-center\">==============<p>" +
-                "<ul class=\"text-center\">" +
-                    "<li class=\"list\"><strong>ID:</strong> " + id + "</li>" + '\n' +
-                    "<li class=\"list\"><strong>Name:</strong> " + name + "</li>" +
-                    "<li class=\"list\"><strong>Price:</strong> " + price + " rub</li>" +
-                    "<li class=\"list\"><strong>Manufacturer:</strong> " + manufacturer.getName() + "</li>" +
-                "</ul>" + '\n';
+        return "ID: " + id + '\n' +
+                    "Name: " + name + '\n' +
+                    "Price: " + price + " rub" + '\n' +
+                    "Manufacturer: " + manufacturer.getName() + '\n';
     }
 }

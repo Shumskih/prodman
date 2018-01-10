@@ -21,18 +21,27 @@
     </div>
     <% List<Product> products = (List<Product>) request.getAttribute("productsList");
     %>
-    <div class="row  text-center">
-        <ul class="list-of">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1"></div>
+        <ul class="list-of border col-lg-4 col-md-6 col-sm-6 col-xs-10">
             <% for(Product p : products) {
             %>
-            <li class="list text-left"><strong>ID: </strong><%out.println(p.getId());%></li>
-            <li class="list  text-left"><strong>Name: </strong><%out.println(p.getName());%></li>
-            <li class="list  text-left"><strong>Price: </strong><%out.println(p.getPrice());%></li>
-            <li class="list  text-left"><strong>Manufacturer: </strong><%out.println(p.getManufacturer());%></li>
-            <li class="list last-list  text-left">=========================================</li>
+            <li class="list"><strong>ID: </strong><%out.println(p.getId());%><br>
+                            <strong>Name: </strong><%out.println(p.getName());%><br>
+                            <strong>Price: </strong><%out.println(p.getPrice());%><br>
+                <% if(p.getManufacturer() != null) {%>
+                            <strong>Manufacturer: </strong><%out.println(p.getManufacturer().getName());%><br>
+                <%} else {%>
+                            <strong>Manufacturer: </strong>no manufacturer<br>
+                <%}%>
+            </li>
             <% }
             %>
         </ul>
+        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1"></div>
+    </div>
+    <div class="row text-center margin-top">
+        <a href="../index.jsp" class="btn btn-success btn-lg active">Main menu</a>
     </div>
 </body>
 </html>

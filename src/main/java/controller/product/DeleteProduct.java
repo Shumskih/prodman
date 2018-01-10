@@ -44,7 +44,6 @@ public class DeleteProduct extends HttpServlet {
         PrintWriter writer = response.getWriter();
 
         String productName = request.getParameter("product");
-        boolean submit = request.getParameter("submit") != null;
 
         response.setContentType("text/html");
 
@@ -68,16 +67,31 @@ public class DeleteProduct extends HttpServlet {
         writer.println("<h1 class=\"text-center\">" + h1Title + "</h1>");
         writer.println("</div>");
 
-        if(!productName.trim().isEmpty()) {
+        if(productName.trim().length() != 0) {
 
-            hibernateProductDAO.delete(productName);
+            Boolean isNameExists = hibernateProductDAO.exists(productName);
+            if (isNameExists) {
+                hibernateProductDAO.delete(productName);
 
-            writer.println("<p class=\"text-center text-success\">Product " + productName + " has deleted</p>");
-            writer.println("<p class=\"text-center\"><a href=\"/index.jsp\" class=\"btn btn-default btn-lg active\">Go to main menu --></a></p>");
+                writer.println("<p class=\"text-center text-success margin-top label-header\">Product " + productName + " has deleted</p>");
+                writer.println("<div class=\"form-group form-correction text-center\">");
+                writer.print("<a href=\"delete-product\" class=\"btn btn-primary active\">Create another one</a>");
+                writer.print("<a href=\"/index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+                writer.println("</div>");
+            } else {
+                writer.println("<p class=\"text-center text-danger margin-top label-header\">Product not found. Enter name of existing product.</p>");
+                writer.println("<div class=\"form-group form-correction text-center\">");
+                writer.print("<a href=\"delete-product\" class=\"btn btn-primary active\">Enter name</a>");
+                writer.print("<a href=\"/index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+                writer.println("</div>");
+            }
         } else {
             if(productName.trim().length() == 0) {
-                writer.println("<p class=\"text-center text-danger\">Please, enter name of product</p>");
-                writer.println("<p class=\"text-center\"><a href=\"delete-product\" class=\"btn btn-default btn-lg active\"><-- Back</a></p>");
+                writer.println("<p class=\"text-center text-danger margin-top label-header\">You're didn't enter name of manufacturer</p>");
+                writer.println("<div class=\"form-group form-correction text-center\">");
+                writer.print("<a href=\"delete-product\" class=\"btn btn-primary active\">Enter name</a>");
+                writer.print("<a href=\"/index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+                writer.println("</div>");
             }
         }
         writer.println("</body>");

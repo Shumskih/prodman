@@ -20,9 +20,10 @@
 </div>
 <form action="add-manufacturer" method="post">
     <div class="form-group form-correction">
-        <label for="manufacturer">Enter name of manufacturer:</label><br>
+        <label for="manufacturer" class="label-header">Enter name of manufacturer:</label><br>
         <input type="text" name="manufacturer" id="manufacturer" placeholder="Enter name of manufacturer here"  class="form-control"/><br>
-        <button type="submit" name="submit" class="btn btn-primary">Save</button>
+        <button type="submit" name="submit" class="btn btn-primary active">Save</button>
+        <a href="../index.jsp" class="btn btn-danger active">Cancel</a>
     </div>
 </form>
 

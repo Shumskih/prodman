@@ -92,16 +92,32 @@ public class UpdateProduct extends HttpServlet {
         writer.println("<h1 class=\"text-center\">" + h1Title + "</h1>");
         writer.println("</div>");
 
-        if((submit) && (!productName.trim().isEmpty())) {
+        if(productName.trim().length() != 0) {
 
-            Product newProduct = new Product(productID, productName, new BigDecimal(productPrice).setScale(2, RoundingMode.HALF_DOWN), manufacturer);
-            hibernateProductDAO.update(newProduct);
+            Boolean isNameExists = hibernateProductDAO.exists(productName);
+            if(isNameExists) {
 
-            writer.println("<p class=\"text-center text-success\">Product " + productName + " has updated</p>");
-            writer.println("<p class=\"text-center\"><a href=\"/index.jsp\" class=\"btn btn-default btn-lg active\">Go to main menu --></a></p>");
+                Product newProduct = new Product(productID, productName, new BigDecimal(productPrice).setScale(2, RoundingMode.HALF_DOWN), manufacturer);
+                hibernateProductDAO.update(newProduct);
+
+                writer.println("<p class=\"text-center text-success margin-top label-header\">Product " + productName + " has updated</p>");
+                writer.println("<div class=\"form-group form-correction text-center\">");
+                writer.print("<a href=\"update-product\" class=\"btn btn-primary active\">Update another one</a>");
+                writer.print("<a href=\"/index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+                writer.println("</div>");
+            } else {
+                writer.print("<p class=\"text-center text-danger margin-top label-header\">Product not found.</p>");
+                writer.println("<div class=\"form-group form-correction text-center\">");
+                writer.print("<a href=\"update-product\" class=\"btn btn-primary active\">Enter existing name</a>");
+                writer.print("<a href=\"../index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+                writer.println("<div>");
+            }
         } else {
-            writer.println("<p class=\"text-center text-danger\">Please, enter name of manufacturer</p>");
-            writer.println("<p class=\"text-center\"><a href=\"update-manufacturer.jsp\" class=\"btn btn-default btn-lg active\"><-- Back</a></p>");
+            writer.println("<p class=\"text-center text-danger margin-top label-header\">You're didn't enter product's name</p>");
+            writer.println("<div class=\"form-group form-correction text-center\">");
+            writer.print("<a href=\"update-product\" class=\"btn btn-primary active\">Enter name</a>");
+            writer.print("<a href=\"../index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+            writer.println("<div>");
         }
         writer.println("</body>");
     }

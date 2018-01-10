@@ -63,9 +63,7 @@ public class Manufacturer {
 
     @Override
     public String toString() {
-        return "<ul class=\"text-center\">" +
-                    "<li class=\"list\"><strong>ID:</strong> " + id + "</li>" + '\n' +
-                    "<li class=\"list\"><strong>Name:</strong> " + name + "</li>" +
-                "</ul>" + '\n';
+        return "ID: " + id + '\n' +
+                "Name: " + name + '\n';
     }
 }

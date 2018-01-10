@@ -22,21 +22,33 @@
     </div>
     <form action="delete-manufacturer" method="post">
         <div class="form-group form-correction">
-            <label for="manufacturer">Enter name of manufacturer:</label><br>
+            <label for="manufacturer" class="label-header">Enter name of manufacturer:</label><br>
             <input type="text" name="manufacturer" id="manufacturer" placeholder="Enter name of manufacturer here"  class="form-control"/><br>
             <button type="submit" name="submit" class="btn btn-primary">Delete</button>
+            <a href="../index.jsp" class="btn btn-danger active">Cancel</a>
         </div>
     </form>
+    <h3 class="margin-top text-center">List Of Manufactures:</h3>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1"></div>
     <% List<Manufacturer> manufacturers = (List<Manufacturer>) request.getAttribute("manufacturersList");
     %>
-    <ul class="list-of">
-        <% for(Manufacturer m : manufacturers) {
+    <ul class="list-of border col-lg-4 col-md-6 col-sm-6 col-xs-10">
+        <% try {
+            for(Manufacturer m : manufacturers) {
         %>
-        <li class="list"><strong>ID: </strong><%out.println(m.getId());%></li>
-        <li class="list"><strong>Name: </strong><%out.println(m.getName());%></li>
-        <li class="list last-list">=========================================</li>
+        <li class="list"><strong>ID: </strong><%out.println(m.getId());%><br>
+                        <strong>Name: </strong><%out.println(m.getName());%>
+        </li>
         <% }
+        } catch (NullPointerException e) {
+        %>
+        <li class="list">No manufactures.</li>
+        <%
+            }
         %>
     </ul>
+        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1"></div>
+    </div>
 </body>
 </html>

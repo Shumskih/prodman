@@ -21,16 +21,21 @@
     </div>
     <% List<Manufacturer> manufacturers = (List<Manufacturer>) request.getAttribute("manufacturersList");
     %>
-    <div class="row  text-center">
-        <ul class="list-of">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1"></div>
+        <ul class="list-of border col-lg-4 col-md-6 col-sm-6 col-xs-10">
         <% for(Manufacturer m : manufacturers) {
         %>
-            <li class="list text-left"><strong>ID: </strong><%out.println(m.getId());%></li>
-            <li class="list  text-left"><strong>Name: </strong><%out.println(m.getName());%></li>
-            <li class="list last-list  text-left">=========================================</li>
+            <li class="list "><strong>ID: </strong><%out.println(m.getId());%><br>
+                <strong>Name: </strong><%out.println(m.getName());%>
+            </li>
         <% }
         %>
         </ul>
+        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1"></div>
+    </div>
+    <div class="row text-center margin-top">
+        <a href="../index.jsp" class="btn btn-success btn-lg active">Main menu</a>
     </div>
 </body>
 </html>

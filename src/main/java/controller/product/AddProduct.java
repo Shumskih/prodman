@@ -52,9 +52,9 @@ public class AddProduct extends HttpServlet {
         String productName = request.getParameter("product");
         String productPrice = request.getParameter("price");
         String productManufacturer = request.getParameter("productManufacturer");
-        boolean submit = request.getParameter("submit") != null;
         BigDecimal bigDecimal = new BigDecimal(productPrice);
         Manufacturer manufacturer = hibernateManufacturerDAO.getbyName(productManufacturer);
+
 
         response.setContentType("text/html");
 
@@ -77,17 +77,31 @@ public class AddProduct extends HttpServlet {
         writer.println("<h1 class=\"text-center\">" + h1Title + "</h1>");
         writer.println("</div>");
 
-        if(!productName.trim().isEmpty()) {
-            Product product = new Product(UUID.randomUUID(), productName, bigDecimal, manufacturer);
-            hibernateProductDAO.save(product);
+        if(productName.trim().length() != 0) {
 
-            writer.println("<p class=\"text-center text-success\">Product " + productName + " has added</p>");
-            writer.println("<p class=\"text-center\"><a href=\"/index.jsp\" class=\"btn btn-default btn-lg active\">Go to main menu --></a></p>");
-        } else {
-            if(productName.trim().length() == 0) {
-                writer.println("<p class=\"text-center text-danger\">Please, enter name of product</p>");
-                writer.println("<p class=\"text-center\"><a href=\"add-product\" class=\"btn btn-default btn-lg active\"><-- Back</a></p>");
+            Boolean isNameExists = hibernateProductDAO.exists(productName);
+            if(!isNameExists) {
+                Product product = new Product(UUID.randomUUID(), productName, bigDecimal, manufacturer);
+                hibernateProductDAO.save(product);
+
+                writer.println("<p class=\"text-center text-success margin-top label-header\">Product " + productName + " has added</p>");
+                writer.println("<div class=\"form-group form-correction text-center\">");
+                writer.print("<a href=\"add-product\" class=\"btn btn-primary active\">Create another one</a>");
+                writer.print("<a href=\"/index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+                writer.println("</div>");
+            } else {
+                writer.print("<p class=\"text-center text-danger margin-top label-header\">Product already exists.</p>");
+                writer.println("<div class=\"form-group form-correction text-center\">");
+                writer.print("<a href=\"add-product\" class=\"btn btn-primary active\">Try again</a>");
+                writer.print("<a href=\"../index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+                writer.println("<div>");
             }
+        } else {
+            writer.println("<p class=\"text-center text-danger margin-top label-header\">You're didn't enter name of Product</p>");
+            writer.println("<div class=\"form-group form-correction text-center\">");
+            writer.print("<a href=\"add-product\" class=\"btn btn-primary active\">Enter name</a>");
+            writer.print("<a href=\"../index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+            writer.println("<div>");
         }
         writer.println("</body>");
     }

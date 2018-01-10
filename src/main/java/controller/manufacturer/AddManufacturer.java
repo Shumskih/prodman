@@ -39,8 +39,7 @@ public class AddManufacturer extends HttpServlet{
         HibernateManufacturerDAOImpl hibernateManufacturerDAO = new HibernateManufacturerDAOImpl();
         PrintWriter writer = response.getWriter();
 
-        String manufacturerName = request.getParameter("manufacturer");
-        boolean submit = request.getParameter("submit") != null;
+        String manufacturerName = request.getParameter("manufacturer").trim();
 
         response.setContentType("text/html");
 
@@ -64,19 +63,33 @@ public class AddManufacturer extends HttpServlet{
         writer.println("<h1 class=\"text-center\">" + h1Title + "</h1>");
         writer.println("</div>");
 
-        if(!manufacturerName.trim().isEmpty()) {
+        if(manufacturerName.trim().length() != 0) {
 
-            Manufacturer manufacturer = new Manufacturer(UUID.randomUUID(), manufacturerName.trim());
-            hibernateManufacturerDAO.save(manufacturer);
+            Boolean isNameExists = hibernateManufacturerDAO.exists(manufacturerName);
+            if (!isNameExists) {
+                Manufacturer manufacturer = new Manufacturer(UUID.randomUUID(), manufacturerName);
+                hibernateManufacturerDAO.save(manufacturer);
 
-            writer.println("<p class=\"text-center text-success\">Manufacturer " + manufacturerName + " has added</p>");
-            writer.println("<p class=\"text-center\"><a href=\"/index.jsp\" class=\"btn btn-default btn-lg active\">Go to main menu --></a></p>");
-        } else {
-            if(manufacturerName.trim().length() == 0) {
-                writer.println("<p class=\"text-center text-danger\">Please, enter name of manufacturer</p>");
-                writer.println("<p class=\"text-center\"><a href=\"add-manufacturer\" class=\"btn btn-default btn-lg active\">Try again</a></p>");
+                writer.print("<p class=\"text-center text-success margin-top label-header\">Manufacturer " + manufacturerName + " has added</p>");
+                writer.println("<div class=\"form-group form-correction text-center\">");
+                writer.print("<a href=\"add-manufacturer\" class=\"btn btn-primary active\">Create another one</a>");
+                writer.print("<a href=\"/index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+                writer.println("</div>");
+            } else {
+                writer.print("<p class=\"text-center text-danger margin-top label-header\">Manufacturer already exists.</p>");
+                writer.println("<div class=\"form-group form-correction text-center\">");
+                writer.print("<a href=\"add-manufacturer\" class=\"btn btn-primary active\">Try again</a>");
+                writer.print("<a href=\"../index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+                writer.println("<div>");
             }
+        } else {
+            writer.print("<p class=\"text-center text-danger margin-top label-header\">Please, enter name of manufacturer</p>");
+            writer.println("<div class=\"form-group form-correction text-center\">");
+            writer.print("<a href=\"add-manufacturer\" class=\"btn btn-primary active\">Try again</a>");
+            writer.print("<a href=\"../index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+            writer.println("<div>");
         }
+        writer.println("</div");
         writer.println("</body>");
     }
 }

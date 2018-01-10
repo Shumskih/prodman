@@ -6,6 +6,7 @@ import model.Manufacturer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,14 +38,11 @@ public class HibernateManufacturerDAOImpl implements GenericDAO<Manufacturer, UU
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         Manufacturer manufacturer = null;
-        List<Manufacturer> manufacturers = null;
 
         try {
             transaction = session.beginTransaction();
-            manufacturers = session.createQuery("FROM Manufacturer WHERE name = :name").setParameter("name", name).list();
-            for(Manufacturer m : manufacturers) {
-                manufacturer = m;
-            }
+
+            manufacturer = (Manufacturer) session.createQuery("FROM Manufacturer WHERE name = :name").setParameter("name", name).uniqueResult();
 
             transaction.commit();
             session.close();
@@ -56,6 +54,13 @@ public class HibernateManufacturerDAOImpl implements GenericDAO<Manufacturer, UU
             e.printStackTrace();
         }
         return manufacturer;
+    }
+
+    public Boolean exists (String manufacturerName) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select 1 from Manufacturer where name = :name")
+                .setParameter("name", manufacturerName);
+        return (query.uniqueResult() != null);
     }
 
     public List<Manufacturer> getAll() {

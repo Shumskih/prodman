@@ -22,23 +22,31 @@
     </div>
     <form action="add-product" method="post">
         <div class="form-group form-correction">
-            <label for="product"><strong>Enter name of product:</strong></label><br>
+            <label for="product" class="label-header"><strong>Enter name of product:</strong></label><br>
                 <input type="text" name="product" id="product" placeholder="Enter name of product here"  class="form-control"/><br>
-            <label for="price"><strong>Enter price of product:</strong></label><br>
+            <label for="price" class="label-header"><strong>Enter price of product:</strong></label><br>
                 <input type="text" name="price" id="price" class="form-control"/><br>
-            <label for="productManufacturer"><strong>Select manufacturer:</strong></label><br>
+            <label for="productManufacturer" class="label-header"><strong>Select manufacturer:</strong></label><br>
 
             <% List<Manufacturer> manufacturers = (List<Manufacturer>) request.getAttribute("manufacturersList");
             %>
             <select class="form-control" name="productManufacturer" id="productManufacturer">
-                <% for(Manufacturer m : manufacturers) {
+                <% try {
+                    for(Manufacturer m : manufacturers) {
                 %>
                 <option><%out.println(m.getName());%></option>
                 <% }
+                } catch (NullPointerException e){
+                %>
+                <option></option>
+                <option>No manufactures. Create manufacture first.</option>
+                <%
+                }
                 %>
 
             </select><br>
             <button type="submit" name="submit" class="btn btn-primary">Save</button>
+            <a href="../index.jsp" class="btn btn-danger active">Cancel</a>
         </div>
     </form>
 </body>

@@ -7,6 +7,7 @@ import model.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -58,6 +59,35 @@ public class HibernateProductDAOImpl implements GenericDAO<Product, UUID> {
             e.printStackTrace();
         }
         return product;
+    }
+
+    public List<Product> getByManufacturerId(Manufacturer manufacturer) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        List<Product> products = new ArrayList<Product>();
+
+        try {
+            transaction = session.beginTransaction();
+            products = session.createQuery("FROM Product where manufacturer.products = :manufacturer")
+                    .setParameter("manufacturer", manufacturer)
+                    .list();
+
+            transaction.commit();
+            session.close();
+        } catch (Exception e) {
+            transaction.rollback();
+            session.close();
+            sessionFactory = null;
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    public Boolean exists (String productName) {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("select 1 from Product where name = :name")
+                .setParameter("name", productName);
+        return (query.uniqueResult() != null);
     }
 
     public List<Product> getAll() {

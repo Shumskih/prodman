@@ -22,9 +22,10 @@
         </div>
         <form action="delete-product" method="post">
         <div class="form-group form-correction">
-            <label for="product">Enter name of product you are going to delete:</label><br>
+            <label for="product" class="label-header">Enter name of product you are going to delete:</label><br>
             <input type="text" name="product" id="product" placeholder="Enter name of product here"  class="form-control"/><br>
             <button type="submit" name="submit" class="btn btn-primary">Delete</button>
+            <a href="../index.jsp" class="btn btn-danger active">Cancel</a>
         </div>
         </form>
         <div class="text-center">

@@ -19,38 +19,37 @@
 </div>
 
 <div class="row">
-    <div class="text-right col-md-6 col-xs-6">
-        <ul>
+    <div class="col-lg-3 col-md-3"></div>
+        <ul class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-right">
             <li class="index">
-                <a href="list-of-manufacturers" class="btn btn-primary">List of manufacturers</a>
+                <a href="list-of-manufacturers" class="btn btn-lg btn-primary">List of manufacturers</a>
             </li>
             <li class="index">
-                <a href="add-manufacturer" class="btn btn-primary">Add manufacturer</a>
+                <a href="add-manufacturer" class="btn btn-lg btn-primary">Add manufacturer</a>
             </li>
             <li class="index">
-                <a href="update-manufacturer" class="btn btn-primary">Update manufacturer</a>
+                <a href="update-manufacturer" class="btn btn-lg btn-primary">Update manufacturer</a>
             </li>
             <li class="index">
-                <a href="delete-manufacturer" class="btn btn-primary">Delete manufacturer</a>
-            </li>
-        </ul>
-    </div>
-    <div class="col-md-6 col-xs-6">
-        <ul>
-            <li class="index">
-                <a href="list-of-products" class="btn btn-primary">List of products</a>
-            </li>
-            <li class="index">
-                <a href="add-product" class="btn btn-primary">Add product</a>
-            </li>
-            <li class="index">
-                <a href="select-product-for-update" class="btn btn-primary">Update product</a>
-            </li>
-            <li class="index">
-                <a href="delete-product" class="btn btn-primary">Delete product</a>
+                <a href="delete-manufacturer" class="btn btn-lg btn-primary">Delete manufacturer</a>
             </li>
         </ul>
-    </div>
+        <ul class="col-lg-3 col-md-3 col-sm-6 col-xs-6 text-left">
+            <li class="index">
+                <a href="list-of-products" class="btn btn-lg btn-primary">List of products</a>
+            </li>
+            <li class="index">
+                <a href="add-product" class="btn btn-lg btn-primary">Add product</a>
+            </li>
+            <li class="index">
+                <a href="select-product-for-update" class="btn btn-lg btn-primary">Update product</a>
+            </li>
+            <li class="index">
+                <a href="delete-product" class="btn btn-lg btn-primary">Delete product</a>
+            </li>
+        </ul>
+    <div class="col-lg-3 col-md-3"></div>
+</div>
 </div>
 </body>
 </html>

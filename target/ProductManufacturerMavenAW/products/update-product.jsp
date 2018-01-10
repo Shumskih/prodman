@@ -33,11 +33,11 @@
                 <!-- Hidden input -->
                 <input type="hidden" name="productId" value="<% out.println(id); %>" class="form-control"><br>
                 <!-- End of hidden input -->
-                <label for="productName">Enter new name of product or leave the existing value:</label><br>
+                <label for="productName" class="label-header">Enter new name of product or leave the existing value:</label><br>
                     <input type="text" name="productName" id="productName" placeholder="Enter new product's name"  value="<% out.println(name); %>" class="form-control"><br>
-                <label for="productPrice">Enter new price or leave the existing value:</label><br>
+                <label for="productPrice" class="label-header">Enter new price or leave the existing value:</label><br>
                     <input type="text" name="productPrice" id="productPrice" placeholder="Enter new product's price"  value="<% out.println(price); %>" class="form-control"><br>
-                <label for="productManufacturer">Select manufacturer or leave the existing value:</label><br>
+                <label for="productManufacturer" class="label-header">Select manufacturer or leave the existing value:</label><br>
 
                 <select class="form-control" name="productManufacturer" id="productManufacturer">
                     <option><%out.println(manufacturer.getName());%></option>
@@ -52,6 +52,7 @@
 
                 </select><br>
                 <button type="submit" name="submit" class="btn btn-primary">Update</button>
+                <a href="../index.jsp" class="btn btn-danger active">Cancel</a>
             </div>
         </form>
     </body>
