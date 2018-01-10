@@ -1,7 +1,8 @@
 # ManufacturersProducts
 Study project. https://prodman.herokuapp.com -->
 
-This is a study project. Used technologies: Java, SQL, Hibernate, Servlet, JSP, Maven, Tomcat, Git
+This is a study project.  
+Used technologies: Java, SQL, Hibernate, Servlet, JSP, Maven, Tomcat, Git
 
 Task Description.  
 Необходимо создать веб-приложение, которое позволяет выполнять CRUD операции над следующими объектами:
