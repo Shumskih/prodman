@@ -13,6 +13,8 @@ public class Manufacturer {
     @Id
     @Column(name = "id")
     @GeneratedValue
+    //Uncomment it if you're run the app on your local machine
+//    @Type(type="uuid-char")
     private UUID id;
 
     @Column(name = "name")

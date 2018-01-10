@@ -23,7 +23,7 @@
     <form action="delete-manufacturer" method="post">
         <div class="form-group form-correction">
             <label for="manufacturer" class="label-header">Enter name of manufacturer:</label><br>
-            <input type="text" name="manufacturer" id="manufacturer" placeholder="Enter name of manufacturer here"  class="form-control"/><br>
+            <input type="text" name="manufacturer" id="manufacturer" placeholder="Enter name of manufacturer here"  class="form-control" required/><br>
             <button type="submit" name="submit" class="btn btn-primary">Delete</button>
             <a href="../index.jsp" class="btn btn-danger active">Cancel</a>
         </div>

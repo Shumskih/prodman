@@ -125,10 +125,7 @@ public class UpdateProduct extends HttpServlet {
         writer.println("</div>");
 
         if(productName.trim().length() != 0) {
-
-            Boolean isNameExists = hibernateProductDAO.exists(productName);
-            if(isNameExists) {
-
+            try {
                 Product newProduct = new Product(productID, productName, new BigDecimal(productPrice).setScale(2, RoundingMode.HALF_DOWN), manufacturer);
                 hibernateProductDAO.update(newProduct);
 
@@ -137,12 +134,11 @@ public class UpdateProduct extends HttpServlet {
                 writer.print("<a href=\"update-product\" class=\"btn btn-primary active\">Update another one</a>");
                 writer.print("<a href=\"/index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
                 writer.println("</div>");
-            } else {
-                writer.print("<p class=\"text-center text-danger margin-top label-header\">Product not found.</p>");
+            } catch (NumberFormatException e) {
+                writer.println("<p class=\"text-center text-success margin-top label-header\">You're enter incorrect price</p>");
                 writer.println("<div class=\"form-group form-correction text-center\">");
-                writer.print("<a href=\"update-product\" class=\"btn btn-primary active\">Enter existing name</a>");
-                writer.print("<a href=\"../index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
-                writer.println("<div>");
+                writer.print("<a href=\"/index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+                writer.println("</div>");
             }
         } else {
             writer.println("<p class=\"text-center text-danger margin-top label-header\">You're didn't enter product's name</p>");
