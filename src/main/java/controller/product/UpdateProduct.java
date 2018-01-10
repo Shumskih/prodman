@@ -87,7 +87,6 @@ public class UpdateProduct extends HttpServlet {
             writer.println("</div>");
             writer.print("<p class=\"text-center text-danger margin-top label-header\">Product not found.</p>");
             writer.println("<div class=\"form-group form-correction text-center\">");
-            writer.print("<a href=\"update-product\" class=\"btn btn-primary active\">Enter existing name</a>");
             writer.print("<a href=\"../index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
             writer.println("<div>");
             writer.println("</body>");
