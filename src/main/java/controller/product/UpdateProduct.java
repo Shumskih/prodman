@@ -46,13 +46,16 @@ public class UpdateProduct extends HttpServlet {
         PrintWriter writer = resp.getWriter();
 
         String productName = req.getParameter("product");
-        Product product = hibernateProductDAO.getbyName(productName);
-        BigDecimal productPrice = product.getPrice().setScale(2, RoundingMode.HALF_DOWN);
-        Manufacturer manufacturer = product.getManufacturer();
+        Product product;
+        Manufacturer manufacturer = null;
+        BigDecimal productPrice = null;
 
         Boolean isNameExists = hibernateProductDAO.exists(productName);
         if(isNameExists) {
+            product = hibernateProductDAO.getbyName(productName);
+            manufacturer = product.getManufacturer();
             productID = product.getId();
+            productPrice = product.getPrice().setScale(2, RoundingMode.HALF_DOWN);
         } else {
             writer.print("<p class=\"text-center text-danger margin-top label-header\">Product not found.</p>");
             writer.println("<div class=\"form-group form-correction text-center\">");
