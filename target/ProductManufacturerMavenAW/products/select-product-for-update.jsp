@@ -38,7 +38,11 @@
                 <li class="list"><strong>ID: </strong><%out.println(p.getId());%><br>
                                             <strong>Name: </strong><%out.println(p.getName());%><br>
                                             <strong>Price: </strong><%out.println(p.getPrice());%><br>
+                    <% try {%>
                                             <strong>Manufacturer: </strong><%out.println(p.getManufacturer().getName());%></li>
+                    <%} catch (NullPointerException e) {%>
+                                            no manufacturer</li>
+                        <%}%>
                 <% }
                 %>
             </ul>

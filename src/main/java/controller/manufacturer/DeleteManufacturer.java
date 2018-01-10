@@ -75,14 +75,18 @@ public class DeleteManufacturer extends HttpServlet {
             Boolean isNameExists = hibernateManufacturerDAO.exists(manufacturerName);
             if (isNameExists) {
                 Manufacturer manufacturer = hibernateManufacturerDAO.getbyName(manufacturerName);
-                List<Product> products = hibernateProductDAO.getByManufacturerId(manufacturer);
+                System.out.println(manufacturer.getId());
+                System.out.println(manufacturer.getName());
+                List<Product> products = hibernateProductDAO.getByManufacturerId(manufacturer.getId());
                 for(Product p : products) {
                     UUID id = p.getId();
                     String name = p.getName();
                     BigDecimal price = p.getPrice();
-
                     hibernateProductDAO.delete(id);
+
                     Product product = new Product(id, name, price);
+                    System.out.println(product.getName());
+
                     hibernateProductDAO.save(product);
                 }
                 hibernateManufacturerDAO.delete(manufacturerName);

@@ -2,6 +2,7 @@
 <%@ page import="java.math.BigDecimal" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.UUID" %>
+<%@ page import="org.apache.commons.lang.ObjectUtils" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <!doctype html>
@@ -27,6 +28,8 @@
             String name = (String) request.getAttribute("productName");
             BigDecimal price = (BigDecimal) request.getAttribute("productPrice");
             Manufacturer manufacturer = (Manufacturer) request.getAttribute("productManufacturer");
+            List<Manufacturer> manufacturers = (List<Manufacturer>) request.getAttribute("productManufacturers");
+            Boolean select = false;
         %>
         <form action="update-product" method="post">
             <div class="form-group form-correction">
@@ -40,16 +43,31 @@
                 <label for="productManufacturer" class="label-header">Select manufacturer or leave the existing value:</label><br>
 
                 <select class="form-control" name="productManufacturer" id="productManufacturer">
-                    <option><%out.println(manufacturer.getName());%></option>
-                <% List<Manufacturer> manufacturers = (List<Manufacturer>) request.getAttribute("productManufacturers");
-                    for(Manufacturer m : manufacturers) {
-                        if(!m.getName().equals(manufacturer.getName())) {
-                    %>
-                    <option><%out.println(m.getName());%></option>
-                    <% }
-                    }
-                    %>
-
+                    <option><%
+                        try {
+                            out.println(manufacturer.getName());
+                        } catch (NullPointerException e) {
+                            select = true;
+                            try {
+                                for(Manufacturer m : manufacturers) {%>
+                                    <option><%out.println(m.getName());%></option>
+                        <%}
+                            } catch (NullPointerException n) {
+                                out.print("No manufacturers.Create manufacturer first if need.");
+                            }
+                        }
+                        %>
+                        <% if(!select) {
+                            try {
+                                for(Manufacturer m : manufacturers) {
+                                    if(!m.getName().equals(manufacturer.getName())) {%>
+                                    <option><%out.println(m.getName());%></option>
+                                <%}
+                                }
+                                } catch (NullPointerException e) {%>
+                                    <option><%out.println("No manufacturers. Create manufacturer if need");%></option>
+                                <%}
+                                }%>
                 </select><br>
                 <button type="submit" name="submit" class="btn btn-primary">Update</button>
                 <a href="../index.jsp" class="btn btn-danger active">Cancel</a>

@@ -28,13 +28,33 @@
             <a href="../index.jsp" class="btn btn-danger active">Cancel</a>
         </div>
         </form>
-        <div class="text-center">
-            There is list of products:<br>
+        <h3 class="margin-top text-center">List Of Manufactures:</h3>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1"></div>
             <% List<Product> products = (List<Product>) request.getAttribute("productList");
-            for(Product p : products) {
-                out.println(p);
-            }
             %>
+            <ul class="list-of border col-lg-4 col-md-6 col-sm-6 col-xs-10">
+                <% try {
+                    for(Product p : products) {
+                %>
+                <li class="list"><strong>ID: </strong><%out.println(p.getId());%><br>
+                    <strong>Name: </strong><%out.println(p.getName());%><br>
+                    <strong>Price: </strong><%out.println(p.getPrice());%><br>
+                    <% try {%>
+                    <strong>Manufacturer: </strong><%out.println(p.getManufacturer().getName());%>
+                    <%} catch(NullPointerException e) {%>
+                    no manufacturer<br>
+                    <%}%>
+                </li>
+                <% }
+                } catch (NullPointerException e) {
+                %>
+                <li class="list">No manufactures.</li>
+                <%
+                    }
+                %>
+            </ul>
+            <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1"></div>
         </div>
     </body>
 </html>

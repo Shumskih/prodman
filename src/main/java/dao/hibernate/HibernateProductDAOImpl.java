@@ -61,15 +61,15 @@ public class HibernateProductDAOImpl implements GenericDAO<Product, UUID> {
         return product;
     }
 
-    public List<Product> getByManufacturerId(Manufacturer manufacturer) {
+    public List<Product> getByManufacturerId(UUID manufacturerId) {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
-        List<Product> products = new ArrayList<Product>();
+        List<Product> products = null;
 
         try {
             transaction = session.beginTransaction();
-            products = session.createQuery("FROM Product where manufacturer.products = :manufacturer")
-                    .setParameter("manufacturer", manufacturer)
+            products = session.createQuery("FROM Product where manufacturer.id = :manufacturerId")
+                    .setParameter("manufacturerId", manufacturerId)
                     .list();
 
             transaction.commit();
