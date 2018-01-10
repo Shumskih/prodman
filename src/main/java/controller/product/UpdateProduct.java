@@ -43,12 +43,23 @@ public class UpdateProduct extends HttpServlet {
         HibernateManufacturerDAOImpl hibernateManufacturerDAO = new HibernateManufacturerDAOImpl();
         List<Manufacturer> manufacturers = hibernateManufacturerDAO.getAll();
         List<Product> products = hibernateProductDAO.getAll();
+        PrintWriter writer = resp.getWriter();
 
         String productName = req.getParameter("product");
         Product product = hibernateProductDAO.getbyName(productName);
-        productID = product.getId();
         BigDecimal productPrice = product.getPrice().setScale(2, RoundingMode.HALF_DOWN);
         Manufacturer manufacturer = product.getManufacturer();
+
+        Boolean isNameExists = hibernateProductDAO.exists(productName);
+        if(isNameExists) {
+            productID = product.getId();
+        } else {
+            writer.print("<p class=\"text-center text-danger margin-top label-header\">Product not found.</p>");
+            writer.println("<div class=\"form-group form-correction text-center\">");
+            writer.print("<a href=\"update-product\" class=\"btn btn-primary active\">Enter existing name</a>");
+            writer.print("<a href=\"../index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+            writer.println("<div>");
+        }
 
         req.setAttribute("id", productID);
         req.setAttribute("productName", productName);
@@ -67,7 +78,6 @@ public class UpdateProduct extends HttpServlet {
         String productName = request.getParameter("productName");
         String productPrice = request.getParameter("productPrice");
         String productManufacturer = request.getParameter("productManufacturer");
-        boolean submit = request.getParameter("submit") != null;
         Manufacturer manufacturer = hibernateManufacturerDAO.getbyName(productManufacturer);
 
         response.setContentType("text/html");
