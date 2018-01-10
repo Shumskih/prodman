@@ -1,22 +1,22 @@
-# prodman
+# ManufacturersProducts
 Study project. https://prodman.herokuapp.com -->
 
 This is a study project. Used technologies: Java, SQL, Hibernate, Servlet, JSP, Maven, Tomcat, Git
 
 Task Description.
 Необходимо создать веб-приложение, которое позволяет выполнять CRUD операции над следующими объектами:
-==========================
+* * * * *  
 Product:
 UUID id;
 String name;
 BigDecimal price;
 Manufacturer manufacturer;
-==========================
+* * * * *  
 Manufacturer
 UUID id;
 String name;
 Set<Product> products;
-==========================
+* * * * *  
 В базе данных хранятся данные о производителях (Manufacturer) и товарах (Product). Каждый товар имеет одного производителя, и каждый производитель имеет набор товаров.
 
 Страницы:
