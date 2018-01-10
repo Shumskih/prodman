@@ -65,11 +65,32 @@ public class UpdateProduct extends HttpServlet {
             req.setAttribute("listOfProducts", products);
             req.getRequestDispatcher("/products/update-product.jsp").forward(req, resp);
         } else {
+            resp.setContentType("text/html");
+
+            writer.println(docType);
+            writer.println("<html lang=\"en\">");
+            writer.println("<head>");
+            writer.println("<!-- Required meta tags -->");
+            writer.println(metaCharset);
+            writer.println(metaNameContent);
+            writer.println("<!-- Bootstrap CSS -->");
+            writer.println(bootstrap);
+            writer.println("<!-- Styles -->");
+            writer.println(css);
+            writer.println("<title>" + h1Title + "</title>");
+            writer.println("</head>");
+
+            writer.println("<body>");
+
+            writer.println("<div class=\"header-h1\">");
+            writer.println("<h1 class=\"text-center\">" + h1Title + "</h1>");
+            writer.println("</div>");
             writer.print("<p class=\"text-center text-danger margin-top label-header\">Product not found.</p>");
             writer.println("<div class=\"form-group form-correction text-center\">");
             writer.print("<a href=\"update-product\" class=\"btn btn-primary active\">Enter existing name</a>");
             writer.print("<a href=\"../index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
             writer.println("<div>");
+            writer.println("</body>");
         }
     }
 
@@ -85,21 +106,20 @@ public class UpdateProduct extends HttpServlet {
 
         response.setContentType("text/html");
 
-        PrintWriter messageWriter = response.getWriter();
-        messageWriter.println(docType);
-        messageWriter.println("<html lang=\"en\">");
-        messageWriter.println("<head>");
-        messageWriter.println("<!-- Required meta tags -->");
-        messageWriter.println(metaCharset);
-        messageWriter.println(metaNameContent);
-        messageWriter.println("<!-- Bootstrap CSS -->");
-        messageWriter.println(bootstrap);
-        messageWriter.println("<!-- Styles -->");
-        messageWriter.println(css);
-        messageWriter.println("<title>" + h1Title + "</title>");
-        messageWriter.println("</head>");
+        writer.println(docType);
+        writer.println("<html lang=\"en\">");
+        writer.println("<head>");
+        writer.println("<!-- Required meta tags -->");
+        writer.println(metaCharset);
+        writer.println(metaNameContent);
+        writer.println("<!-- Bootstrap CSS -->");
+        writer.println(bootstrap);
+        writer.println("<!-- Styles -->");
+        writer.println(css);
+        writer.println("<title>" + h1Title + "</title>");
+        writer.println("</head>");
 
-        messageWriter.println("<body>");
+        writer.println("<body>");
 
         writer.println("<div class=\"header-h1\">");
         writer.println("<h1 class=\"text-center\">" + h1Title + "</h1>");
