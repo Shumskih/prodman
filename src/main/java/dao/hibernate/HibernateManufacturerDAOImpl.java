@@ -24,13 +24,16 @@ public class HibernateManufacturerDAOImpl implements GenericDAO<Manufacturer, UU
 
             session.save(manufacturer);
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             transaction.rollback();
             session.close();
             HibernateUtil.closeSessionFactory(sessionFactory);
             sessionFactory = null;
             e.printStackTrace();
+        } finally {
+            if(session != null) {
+                session.close();
+            }
         }
     }
 
@@ -45,21 +48,25 @@ public class HibernateManufacturerDAOImpl implements GenericDAO<Manufacturer, UU
             manufacturer = (Manufacturer) session.createQuery("FROM Manufacturer WHERE name = :name").setParameter("name", name).uniqueResult();
 
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             transaction.rollback();
             session.close();
             HibernateUtil.closeSessionFactory(sessionFactory);
             sessionFactory = null;
             e.printStackTrace();
+        } finally {
+            if(session != null) {
+                session.close();
+            }
         }
         return manufacturer;
     }
 
     public Boolean exists (String manufacturerName) {
         Session session = sessionFactory.openSession();
+
         Query query = session.createQuery("select 1 from Manufacturer where name = :name")
-                .setParameter("name", manufacturerName);
+                    .setParameter("name", manufacturerName);
         return (query.uniqueResult() != null);
     }
 
@@ -73,13 +80,16 @@ public class HibernateManufacturerDAOImpl implements GenericDAO<Manufacturer, UU
             manufacturers = session.createQuery("FROM Manufacturer").list();
 
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             transaction.rollback();
             session.close();
             HibernateUtil.closeSessionFactory(sessionFactory);
             sessionFactory = null;
             e.printStackTrace();
+        } finally {
+            if(session != null) {
+                session.close();
+            }
         }
         return manufacturers;
     }
@@ -100,12 +110,15 @@ public class HibernateManufacturerDAOImpl implements GenericDAO<Manufacturer, UU
 
             session.update(manufacturer);
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             transaction.rollback();
             session.close();
             HibernateUtil.closeSessionFactory(sessionFactory);
             e.printStackTrace();
+        } finally {
+            if(session != null) {
+                session.close();
+            }
         }
     }
 
@@ -118,13 +131,16 @@ public class HibernateManufacturerDAOImpl implements GenericDAO<Manufacturer, UU
             Manufacturer manufacturer = session.get(Manufacturer.class, id);
             session.delete(manufacturer);
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             transaction.rollback();
             session.close();
             HibernateUtil.closeSessionFactory(sessionFactory);
             sessionFactory = null;
             e.printStackTrace();
+        } finally {
+            if(session != null) {
+                session.close();
+            }
         }
     }
 
@@ -138,13 +154,16 @@ public class HibernateManufacturerDAOImpl implements GenericDAO<Manufacturer, UU
                     .setParameter("name", name)
                     .executeUpdate();
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             transaction.rollback();
             session.close();
             HibernateUtil.closeSessionFactory(sessionFactory);
             sessionFactory = null;
             e.printStackTrace();
+        } finally {
+            if(session != null) {
+                session.close();
+            }
         }
     }
 }

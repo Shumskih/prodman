@@ -52,7 +52,6 @@ public class AddProduct extends HttpServlet {
         String productName = request.getParameter("product");
         String productPrice = request.getParameter("price");
         String productManufacturer = request.getParameter("productManufacturer");
-        BigDecimal bigDecimal = new BigDecimal(productPrice);
         Manufacturer manufacturer = hibernateManufacturerDAO.getbyName(productManufacturer);
 
 
@@ -81,14 +80,23 @@ public class AddProduct extends HttpServlet {
 
             Boolean isNameExists = hibernateProductDAO.exists(productName);
             if(!isNameExists) {
-                Product product = new Product(UUID.randomUUID(), productName, bigDecimal, manufacturer);
-                hibernateProductDAO.save(product);
+                try {
+                    BigDecimal bigDecimal = new BigDecimal(productPrice);
+                    Product product = new Product(UUID.randomUUID(), productName, bigDecimal, manufacturer);
+                    hibernateProductDAO.save(product);
 
-                writer.println("<p class=\"text-center text-success margin-top label-header\">Product " + productName + " has added</p>");
-                writer.println("<div class=\"form-group form-correction text-center\">");
-                writer.print("<a href=\"add-product\" class=\"btn btn-primary active\">Create another one</a>");
-                writer.print("<a href=\"/index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
-                writer.println("</div>");
+                    writer.println("<p class=\"text-center text-success margin-top label-header\">Product " + productName + " has added</p>");
+                    writer.println("<div class=\"form-group form-correction text-center\">");
+                    writer.print("<a href=\"add-product\" class=\"btn btn-primary active\">Create another one</a>");
+                    writer.print("<a href=\"/index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+                    writer.println("</div>");
+                } catch (NumberFormatException e) {
+                    writer.println("<p class=\"text-center text-success margin-top label-header\">You're didn't enter price of Product</p>");
+                    writer.println("<div class=\"form-group form-correction text-center\">");
+                    writer.print("<a href=\"add-product\" class=\"btn btn-primary active\">Enter price</a>");
+                    writer.print("<a href=\"/index.jsp\" class=\"btn btn-danger active\">Cancel</a>");
+                    writer.println("</div>");
+                }
             } else {
                 writer.print("<p class=\"text-center text-danger margin-top label-header\">Product already exists.</p>");
                 writer.println("<div class=\"form-group form-correction text-center\">");

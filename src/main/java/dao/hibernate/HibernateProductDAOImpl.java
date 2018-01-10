@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class HibernateProductDAOImpl implements GenericDAO<Product, UUID> {
+    HibernateUtil hibernateUtil = new HibernateUtil();
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     public void save(Product product) {
@@ -26,13 +27,14 @@ public class HibernateProductDAOImpl implements GenericDAO<Product, UUID> {
 
             session.save(product);
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             transaction.rollback();
             session.close();
             HibernateUtil.closeSessionFactory(sessionFactory);
             sessionFactory = null;
             e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
@@ -44,19 +46,20 @@ public class HibernateProductDAOImpl implements GenericDAO<Product, UUID> {
 
         try {
             transaction = session.beginTransaction();
-            products = session.createQuery("FROM Product WHERE name = :name").setParameter("name", name).list();
+            products = session.createQuery("FROM Product WHERE name = :name").setParameter("name", name)
+                    .list();
             for(Product p : products) {
                 product = p;
             }
-
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             transaction.rollback();
             session.close();
             HibernateUtil.closeSessionFactory(sessionFactory);
             sessionFactory = null;
             e.printStackTrace();
+        } finally {
+            session.close();
         }
         return product;
     }
@@ -73,20 +76,22 @@ public class HibernateProductDAOImpl implements GenericDAO<Product, UUID> {
                     .list();
 
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             transaction.rollback();
             session.close();
             sessionFactory = null;
             e.printStackTrace();
+        } finally {
+            session.close();
         }
         return products;
     }
 
     public Boolean exists (String productName) {
         Session session = sessionFactory.openSession();
+
         Query query = session.createQuery("select 1 from Product where name = :name")
-                .setParameter("name", productName);
+                    .setParameter("name", productName);
         return (query.uniqueResult() != null);
     }
 
@@ -100,13 +105,14 @@ public class HibernateProductDAOImpl implements GenericDAO<Product, UUID> {
             products = session.createQuery("FROM Product").list();
 
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             transaction.rollback();
             session.close();
             HibernateUtil.closeSessionFactory(sessionFactory);
             sessionFactory = null;
             e.printStackTrace();
+        } finally {
+            session.close();
         }
         return products;
     }
@@ -131,12 +137,13 @@ public class HibernateProductDAOImpl implements GenericDAO<Product, UUID> {
 
             session.update(product);
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             transaction.rollback();
             session.close();
             HibernateUtil.closeSessionFactory(sessionFactory);
             e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
@@ -149,13 +156,14 @@ public class HibernateProductDAOImpl implements GenericDAO<Product, UUID> {
             Product product = session.get(Product.class, id);
             session.delete(product);
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             transaction.rollback();
             session.close();
             HibernateUtil.closeSessionFactory(sessionFactory);
             sessionFactory = null;
             e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 
@@ -169,13 +177,14 @@ public class HibernateProductDAOImpl implements GenericDAO<Product, UUID> {
                     .setParameter("name", name)
                     .executeUpdate();
             transaction.commit();
-            session.close();
         } catch (Exception e) {
             transaction.rollback();
             session.close();
             HibernateUtil.closeSessionFactory(sessionFactory);
             sessionFactory = null;
             e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 }

@@ -23,9 +23,9 @@
     <form action="add-product" method="post">
         <div class="form-group form-correction">
             <label for="product" class="label-header"><strong>Enter name of product:</strong></label><br>
-                <input type="text" name="product" id="product" placeholder="Enter name of product here"  class="form-control"/><br>
+                <input type="text" name="product" id="product" placeholder="Enter name of product here"  class="form-control" required/><br>
             <label for="price" class="label-header"><strong>Enter price of product:</strong></label><br>
-                <input type="text" name="price" id="price" class="form-control"/><br>
+                <input type="text" name="price" id="price" class="form-control" required/><br>
             <label for="productManufacturer" class="label-header"><strong>Select manufacturer:</strong></label><br>
 
             <% List<Manufacturer> manufacturers = (List<Manufacturer>) request.getAttribute("manufacturersList");

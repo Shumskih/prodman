@@ -23,9 +23,9 @@
         <form action="update-manufacturer" method="post">
             <div class="form-group form-correction">
                 <label for="oldManufacturerName" class="label-header">Enter name of manufacturer you are going to update:</label><br>
-                <input type="text" name="oldManufacturerName" id="oldManufacturerName" placeholder="Enter old manufacturer's name"  class="form-control"/><br>
+                <input type="text" name="oldManufacturerName" id="oldManufacturerName" placeholder="Enter old manufacturer's name"  class="form-control" required/><br>
                 <label for="newManufacturerName" class="label-header">Enter new name of manufacturer:</label><br>
-                <input type="text" name="newManufacturerName" id="newManufacturerName" placeholder="Enter new manufacturer's name"  class="form-control"/><br>
+                <input type="text" name="newManufacturerName" id="newManufacturerName" placeholder="Enter new manufacturer's name"  class="form-control" required/><br>
                 <button type="submit" name="submit" class="btn btn-primary active">Update</button>
                 <a href="../index.jsp" class="btn btn-danger active">Cancel</a>
             </div>

@@ -6,12 +6,18 @@ import org.hibernate.cfg.Configuration;
 public class HibernateUtil {
     private static SessionFactory sessionFactory = null;
 
-    public HibernateUtil() {
-
+    static {
+        try {
+            if(sessionFactory == null) {
+                sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+            }
+        } catch (Throwable e) {
+            System.err.println("Error in creating SessionFactory object." + e.getMessage());
+            throw new ExceptionInInitializerError(e);
+        }
     }
 
     public static SessionFactory getSessionFactory() {
-        sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
         return sessionFactory;
     }
 
