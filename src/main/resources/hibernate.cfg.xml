@@ -11,13 +11,13 @@
             org.postgresql.Driver
         </property>
         <property name="hibernate.connection.url">
-            jdbc:postgresql://ec2-54-195-241-106.eu-west-1.compute.amazonaws.com:5432/d9c0krjrij62ib
+            <!-- your database url -->
         </property>
         <property name="hibernate.connection.username">
-            puqzkfywevudxy
+            <!-- your database username -->
         </property>
         <property name="hibernate.connection.password">
-            4c2692dc9358cd4a681046a1b7b28f48a8ef64b60ce6e617faa5d17a344758b3
+            <!-- your database password -->
         </property>
 
         <!-- List of XML mapping files -->
